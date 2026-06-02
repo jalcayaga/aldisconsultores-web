@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aldis Consultores — Sitio en construcción</title>
+  <meta name="description" content="Aldis Consultores — Nuevo sitio web en construcción. Pronto estaremos aquí." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #1a9da8;
+      --teal-light: #2bbdca;
+      --teal-dim: rgba(26, 157, 168, 0.12);
+      --bg: #060b0c;
+      --surface: #0d1718;
+      --border: rgba(26, 157, 168, 0.18);
+      --text: #e8f4f5;
+      --muted: #6b9ca0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Animated background glow */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 800px 500px at 50% 30%, rgba(26, 157, 168, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 400px at 80% 80%, rgba(26, 157, 168, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      margin-bottom: 40px;
+      animation: fade-up 0.8s ease both;
+    }
+    .logo-wrap img {
+      width: 160px;
+      height: auto;
+      filter: drop-shadow(0 0 32px rgba(26, 157, 168, 0.3));
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--teal-dim);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 24px;
+      animation: fade-up 0.8s 0.1s ease both;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fade-up 0.8s 0.2s ease both;
+    }
+    h1 span { color: var(--teal-light); }
+
+    /* Subtext */
+    .sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin: 0 auto 48px;
+      animation: fade-up 0.8s 0.3s ease both;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto 48px;
+      animation: fade-up 0.8s 0.4s ease both;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .progress-track {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), var(--teal-light));
+      border-radius: 999px;
+      animation: fill-bar 1.6s 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+
+    /* Contact card */
+    .card {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 36px;
+      animation: fade-up 0.8s 0.5s ease both;
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .card-email {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .card-email:hover { color: var(--teal-light); }
+    .card-email svg {
+      width: 18px;
+      height: 18px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* Divider */
+    .divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(107, 156, 160, 0.5);
+      letter-spacing: 0.08em;
+      animation: fade-in 1s 1s ease both;
+    }
+    footer a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    footer a:hover { opacity: 1; }
+
+    /* Keyframes */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    @keyframes fill-bar {
+      from { width: 0; }
+      to   { width: 62%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="logo-wrap">
+      <img
+        src="Logo Aldis/LOGOS Aldis consultores-06.png"
+        alt="Aldis Consultores"
+      />
+    </div>
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Sitio en construcción
+    </div>
+
+    <h1>Pronto estaremos<br /><span>aquí para ti</span></h1>
+
+    <p class="sub">
+      Estamos construyendo el nuevo sitio web de Aldis Consultores.<br />
+      Volveremos muy pronto con algo que vale la pena esperar.
+    </p>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Desarrollo</span>
+        <span>62%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-title">Mientras tanto, escríbenos</span>
+      <a href="mailto:contacto@aldisconsultores.cl" class="card-email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-10 7L2 7"/>
+        </svg>
+        contacto@aldisconsultores.cl
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    Desarrollado por <a href="https://artifact.cl" target="_blank" rel="noopener">Artifact</a>
+    &nbsp;·&nbsp; &copy; 2026 Aldis Consultores
+  </footer>
+</body>
+</html>
